@@ -8,13 +8,12 @@ holdMatrix, and blendMatrix, enabling matrix-based parent and aim
 constraints without relying on standard Maya constraint nodes.
 
 Author: Clement Daures
-Company: The Rigging Atlas
-Website: theriggingatlas.com
+Website: clementdaures.com
 Created: 2025
 
 # ---------- LICENSE ----------
 
-Copyright 2025 Clement Daures - The Rigging Atlas
+Copyright 2025 Clement Daures
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -383,6 +382,28 @@ class Matrix:
             raise ValueError(f"Submitted node {matrix_node} does not contain a offsetParentMatrix attribute")
 
         return f"{matrix_node}.offsetParentMatrix"
+
+
+    def get_offset_parent_matrix_source(self):
+        """
+        Get the source plug connected to the node's offsetParentMatrix attribute.
+
+        Args:
+            self.driven (str): The name of the driven object to check.
+
+        Returns:
+            str or None: The full plug name of the source connection
+                         (e.g. "node01.worldMatrix[0]"), or None if no connection exists.
+        """
+
+        connections = cmds.listConnections(
+            f"{self.driven}.offsetParentMatrix",
+            source=True,
+            destination=False,
+            plugs=True
+        )
+
+        return connections[0] if connections else None
 
 
     def connect_matrix(self, source: str, target: str) -> None:
