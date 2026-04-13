@@ -5,13 +5,12 @@ This module provides the `ParentCon` class, which allows precise matrix-based co
 over objects using matrix nodes in Maya. It inherits from Matrix class.
 
 Author: Clement Daures
-Company: The Rigging Atlas
-Website: theriggingatlas.com
+Website: clementdaures.com
 Created: 2025
 
 # ---------- LICENSE ----------
 
-Copyright 2025 Clement Daures - The Rigging Atlas
+Copyright 2025 Clement Daures
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -226,7 +225,6 @@ class ParentCon(Matrix):
 
         return decompose_in, compose_out
 
-
     def mount_system(self):
         """
         Internal setup to create the constraint chain and connect it.
@@ -247,9 +245,6 @@ class ParentCon(Matrix):
             all_rotate = self._all_rotate()
             all_scale = self._all_scale()
             all_shear = self._all_shear()
-
-            self.preserve_initial_transform()
-            self.preserve_initial_matrix()
 
             mult_outs = []
 
@@ -276,11 +271,17 @@ class ParentCon(Matrix):
             if len(self.drivers) > 1 or self.envelope:
                 blend_node, blend_input, blend_in, blend_out, blend_in_weight = self.con_blend_matrix()
                 if self.envelope:
-                    self.get_set_attr(self.get_matrix(self.driven), blend_input)
+                    input_connection = self.get_offset_parent_matrix_source()
+
+                    if input_connection:
+                        self.connect_attr(input_connection, blend_input)
+                    else:
+                        self.get_set_attr(self.get_matrix(self.driven), blend_input)
+
                 for index, mult_out in enumerate(mult_outs):
                     self.connect_attr(mult_outs[index], blend_in(index))
                     created_attr = self.create_attr(index, blend_in_weight)
-                    if index > 0 :
+                    if index > 0:
                         cmds.setAttr(created_attr, self.weights.all)
                 self.connect_attr(blend_out, self.get_offset_parent_matrix(self.driven))
             # End connection if no blend created
