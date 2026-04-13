@@ -4,13 +4,12 @@ PySide compatibility layer for Maya 2020+
 Automatically detects and imports the correct PySide version
 
 Author: Clement Daures
-Company: The Rigging Atlas
-Website: theriggingatlas.com
+Website: clementdaures.com
 Created: 2025
 
 # ---------- LICENSE ----------
 
-Copyright 2025 Clement Daures - The Rigging Atlas
+Copyright 2025 Clement Daures
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

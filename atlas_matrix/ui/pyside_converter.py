@@ -4,13 +4,12 @@ Script to convert PySide6 UI files to work with both PySide2 and PySide6
 Run this to update your atlas_matrix_parent_ui.py file
 
 Author: Clement Daures
-Company: The Rigging Atlas
-Website: theriggingatlas.com
+Website: clementdaures.com
 Created: 2025
 
 # ---------- LICENSE ----------
 
-Copyright 2025 Clement Daures - The Rigging Atlas
+Copyright 2025 Clement Daures
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
