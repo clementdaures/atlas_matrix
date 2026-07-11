@@ -2,9 +2,9 @@
 
 **Author**: Clement Daures
 **Version**: 1.0.0  
-**Compatible with**: Autodesk Maya 2020+ (PySide5)
-**State**: Still in development
-**License**: Apache 2.0
+**Compatible with**: Autodesk Maya 2020+ (PySide2) and Maya 2025+ (PySide6)    
+**State**: Still in development  
+**License**: Apache 2.0  
 
 ---
 
